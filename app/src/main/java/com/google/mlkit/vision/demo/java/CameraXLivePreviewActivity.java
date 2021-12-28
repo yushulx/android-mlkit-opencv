@@ -81,6 +81,7 @@ import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Core;
+import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.Scalar;
 import org.opencv.imgcodecs.Imgcodecs;
@@ -497,7 +498,7 @@ public final class CameraXLivePreviewActivity extends AppCompatActivity
           long start = System.currentTimeMillis();
           Image image = imageProxy.getImage();
           Mat out = new Mat();
-          Mat tmp = new Mat(image.getHeight(), image.getWidth(), Imgcodecs.IMREAD_GRAYSCALE, image.getPlanes()[0].getBuffer());
+          Mat tmp = new Mat(image.getHeight(), image.getWidth(), CvType.CV_8UC1, image.getPlanes()[0].getBuffer());
           Imgproc.blur(tmp, out, new org.opencv.core.Size(5, 5));
           Scalar scalar = Core.mean(out);
           long end = System.currentTimeMillis();
